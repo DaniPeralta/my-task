@@ -67,7 +67,9 @@ class RangesSpec extends FlatSpec with Matchers {
   it should "inclusiveWithToRangeExercises" in {
     val someNumbers = Range(0, 34).inclusive
     val otherRange = 0 to 34
+    val otherRange2 = 0 until 34
 
     (someNumbers == otherRange) should be(true)
+    (otherRange == otherRange2) should be(false)
   }
 }
