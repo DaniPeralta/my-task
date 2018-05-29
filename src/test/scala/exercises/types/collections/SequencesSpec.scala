@@ -38,6 +38,10 @@ class SequencesSpec extends FlatSpec with Matchers {
   it should "withConditionSequencesandArrays" in {
     val s = for (v ← 1 to 10 if v % 3 == 0) yield v
     s.toList should be(List(3, 6, 9))
+    //Scala adapt the val for compare.
+    s should be(List (3, 6, 9))
+    s should be(Array(3, 6, 9))
+
   }
 
   /** You can filter any sequence based on a predicate:
