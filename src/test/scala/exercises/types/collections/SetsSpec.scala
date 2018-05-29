@@ -78,7 +78,7 @@ class SetsSpec extends FlatSpec with Matchers {
     */
   it should "have elements can be removed with a tuple" in {
     val mySet   = Set("Michigan", "Ohio", "Wisconsin", "Iowa")
-    val aNewSet = mySet - ("Michigan", "Ohio") // Notice: single '-' operator for tuples
+    val aNewSet = mySet - ("Michigan", "Ohio", "Cádiz") // Notice: single '-' operator for tuples
 
     aNewSet.contains("Michigan") should be(false)
     aNewSet.contains("Wisconsin") should be(true)
@@ -112,7 +112,7 @@ class SetsSpec extends FlatSpec with Matchers {
     val mySet2  = Set("Wisconsin", "Michigan", "Minnesota")
     val aNewSet = mySet1 union mySet2 // NOTE: You can also use the "|" operator
 
-    aNewSet.equals(Set("Michigan", "Wisconsin", "Ohio", "Iowa", "Minnesota")) should be(true)
+    aNewSet.equals(Set("Michigan", "Wisconsin", "Iowa", "Minnesota", "Ohio")) should be(true)
   }
 
   /** A set is either a subset of another set or it isn't:
@@ -124,6 +124,7 @@ class SetsSpec extends FlatSpec with Matchers {
 
     mySet2 subsetOf mySet1 should be(false)
     mySet3 subsetOf mySet1 should be(true)
+    mySet3 subsetOf mySet2 should be(true)
   }
 
   /** The difference between two sets can be obtained easily:
@@ -143,6 +144,19 @@ class SetsSpec extends FlatSpec with Matchers {
     val mySet2 = Set("Wisconsin", "Michigan", "Ohio", "Iowa")
 
     mySet1.equals(mySet2) should be(true)
+
+    val xs1 = Set(3, 2, 1, 4, 5, 6, 7)
+    val ys1 = Set(7, 2, 1, 4, 5, 6, 3)
+
+    (xs1 sameElements ys1) should be(true)
+
+    val xt1 = Set(1, 2, 3, 4)
+    val yt1 = Set(4, 3, 2, 1)
+    (xt1 sameElements yt1) should be(false)
+
+    val xt2 = Set(1, 2, 3, 4, 5)
+    val yt2 = Set(5, 4, 3, 2, 1)
+    (xt2 sameElements yt2) should be(true)
   }
 
 }
