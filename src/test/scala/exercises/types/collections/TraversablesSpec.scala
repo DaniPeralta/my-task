@@ -148,6 +148,8 @@ class TraversablesSpec extends FlatSpec with Matchers {
     val result = list.toStream
     result.isInstanceOf[Stream[_]] should be(true)
     (result take 3) should be(List(4, 6, 7))
+    //Change to scala-exercises don't run with List(4,6,7)
+    (result take 3) should be(Stream(4, 6, 7))
   }
 
   /** `toSet` will convert any `Traversable` to a `Set` which is a collection of unordered, unique values:
@@ -207,6 +209,7 @@ class TraversablesSpec extends FlatSpec with Matchers {
     val map = Map("Phoenix" → "Arizona", "Austin" → "Texas")
     map.hasDefiniteSize should be(true)
 
+    //I'm not understand
     val stream = cons(0, cons(1, Stream.empty))
     stream.hasDefiniteSize should be(false)
   }
@@ -222,7 +225,9 @@ class TraversablesSpec extends FlatSpec with Matchers {
     */
   it should "headOptionFunctionTraversables" in {
     val list = List(10, 19, 45, 1, 22)
+    //It's the same?
     list.headOption should be(Some(10))
+    list.headOption should be(Option(10))
 
     val list2 = List()
     list2.headOption should be(None)
